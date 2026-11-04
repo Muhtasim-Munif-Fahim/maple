@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Button, Modal } from "../bootstrap"
 import { StyledBillTitle, StyledModalTitle } from "./HistoryModal"
 import { HistoryTable } from "./HistoryTable"
+import { formatHistoryAction } from "./formatHistoryAction"
 import { BillProps } from "./types"
 import { useTranslation } from "next-i18next"
 
@@ -50,7 +51,9 @@ export const Status = ({ bill }: BillProps) => {
           className="text-truncate ps-4"
           onClick={handleShowBillHistory}
         >
-          {hearingCheck && dateCheck ? t("bill.hearing_held") : history.Action}
+          {hearingCheck && dateCheck
+            ? t("bill.hearing_held")
+            : formatHistoryAction(history.Action)}
         </StyledButton>
         <Modal show={showBillHistory} onHide={handleCloseBillHistory} size="lg">
           <Modal.Header closeButton onClick={handleCloseBillHistory}>

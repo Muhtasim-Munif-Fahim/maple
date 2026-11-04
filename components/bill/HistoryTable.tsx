@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { BillHistory } from "../db"
 import { CourtContext } from "./Status"
 import { useTranslation } from "next-i18next"
+import { formatHistoryAction } from "./formatHistoryAction"
 
 export type HistoryProps = { billHistory: BillHistory }
 
@@ -40,7 +41,7 @@ const BillHistoryActionRows = ({ billHistory }: HistoryProps) => {
               {Date ? `${Date.substring(5, 10)}-${Date.substring(0, 4)}` : ""}
             </td>
             <td>
-              <LinkConnectedBills action={Action} />
+              <LinkConnectedBills action={formatHistoryAction(Action)} />
             </td>
             <td>{Branch}</td>
           </tr>
@@ -102,6 +103,7 @@ const StyledTable = styled.table`
       line-height: 22px;
       letter-spacing: -1.125px;
       text-align: start;
+      white-space: pre-line;
 
       padding: 0.5rem 0.75rem;
       outline: 0.25rem solid white;
